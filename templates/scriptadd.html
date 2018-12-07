@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+ <style type="text/css">
+    .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: linear-gradient(to bottom right, #33ccff -54%, #99ffde 116%);
+    padding-top: 16px;
+    margin-left: 4%;
+    margin-top: 4%;
+    border-radius: 16px;
+    box-shadow: -5px 5px 29px #ddd;
+}
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 11px;
+    margin-bottom: 10px;
+    padding-left: 390px;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-left: 27%;
+    margin-right: 25%;
+}
+
+  </style>
+</head>
+<body>
+<h4 style="color:blue;text-decoration: underline; "> ADD SCRIPTEXECUTION</h4><br>
+
+<form class="form-inline" method="POST" action="/scriptexe/">
+
+ <div class="form-group col-md-9" style="margin-left: 112px;">
+      <label for="Config name:" style="padding-left: 96px;">Script Name:</label>
+      <input type="text" class="form-control" name="execution_name" style="margin-left: 0px;">
+
+     <label style="font-weight: 10px; padding-left: 17px;"> ScriptDbtype:</label>
+
+     <select name="script_dbtype" class="form-control"  style="padding-right: 104px; margin-left: 0px;">
+       <option>------------</option>
+      {% for i in scrp_type %}
+       <option value="{{i.id}}">{{i.name}}</option>
+      
+      {% endfor %}
+
+      </select>
+
+      <br><br>
+
+
+     <!--  <label style="padding-left: 12px;">CompanyId:</label>
+       <select name="companyId" class="form-control"  style="padding-right: 120px; margin-left: 84px;">
+      {% for i in company_list %}
+       <option value="{{i.id}}">{{i}}</option>
+       {% endfor %}
+      </select><br><br> -->
+     
+
+
+       <label style="padding-left: 5px;">Script Execution Opertion:</label>
+      <select name="select_execution_operation" class="form-control "  style="padding-right: 103px;">
+          <option>------------</option>
+       {% for i in crud %}
+
+      <option value="{{i.id}}">{{i.name}}</option>
+      {% endfor %}
+     </select>
+
+      
+
+       <label for="Config name:" style="padding-right: 10px; margin-left:12px; ">Method Name:</label>
+      <input type="text" class="form-control" name="function"  style="margin-left: -9px;"><br><br>
+
+
+
+     <label for="Config name:" style="padding-right: 10px; margin-left:46px; "> Method ReturnType:</label>
+      <input type="text" class="form-control" name="types"  style="margin-left: -10px;"><br><br>
+
+      
+
+      <label style="padding-left: 109px;">Script Sql: </label>
+   
+      <textarea class="textarea form-control" cols="40" id="id_description" name="sql_script" rows="10" style="margin-left: 68px; width: 450px;margin: 0px 0px 0px 0px;  height: 105px;"></textarea><br><br>
+
+
+    <!-- <label style="padding-left: 18px;">Server name:</label>
+       <select name="server_name" class="form-control "  style="padding-right: 120px; margin-left: 72px;">
+      {% for i in server %}
+       <option value="{{i.id}}">{{i}}</option>
+       {% endfor %}
+      </select><br><br>
+     
+
+     <label style="padding-left: 18px;">Dbconfig:</label>
+       <select name="dbconfig" class="form-control "  style="padding-right: 0px; margin-left: 94px;">
+      {% for i in dbconfigdetails %}
+       <option value="{{i.id}}">{{i}}</option>
+       {% endfor %}
+      </select><br><br><br>  -->
+     
+
+
+      <button type="submit" class="btn btn-primary" style="float: right;">save</button>
+
+      <input action="action" onclick="window.history.go(-1); return false;" type="button" value="cancel" class="btn btn-danger pull-right" style="margin-right: 101px; margin-top:-34px;" /><br/><br/>
+ </div>
+
+ </form>
+</body>
+</html>

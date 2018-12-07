@@ -1,0 +1,440 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>execute</title>
+ <link rel="shortcut icon" href="/static/static/assets/images/auvit-272x128.png" type="image/x-icon">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="/static/assets/bootstrap-material-design-font/css/material.css">
+  <link rel="stylesheet" href="/static/assets/et-line-font-plugin/style.css">
+  <link rel="stylesheet" href="/static/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/animate.css/animate.min.css">
+  <link rel="stylesheet" href="/static/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="/static/assets/theme/css/style.css">
+  <link rel="stylesheet" href="/static/assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="/static/assets/custom/custom.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/font-awesome.css" media="all">
+  <link rel="stylesheet" href="/static/assets/line-icons/line-icons.css">
+
+  <link rel="stylesheet" href="/static/assets/custom/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/custom/jquery.dataTables.min.css">
+
+  <!-- /.terminal-window css -->
+  <link rel="stylesheet" href="/static/custom/css/terminal.css">
+  <link rel="stylesheet" href="/static/custom/css/core.css">
+  <link rel="stylesheet" href="/static/custom/css/cursor.css">
+  <!-- /.end terminal window -->
+  
+
+  <!--<link href="/static/jquery.terminal-1.5.0/css/jquery.terminal-1.5.0.min.css" rel="stylesheet"/>-->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+   <script src="/static/assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="/static/assets/tether/tether.min.js"></script>
+   <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="/static/custom/js/jquery.dataTables.min.js"></script>
+  <script src="/static/custom/js/dataTables.bootstrap.min.js"></script>
+
+</head>
+
+
+
+<style type="text/css">
+  .nav-tabs .nav-link {
+  color : blue;
+  padding : 6px 15px;
+}
+.btn-primary {
+    background-color: #f5f5f5;
+    border-color: #111;
+    color: #111;
+}
+
+
+.sorting_asc{
+      color: #ffffff !important;
+}
+th[class*="sorting"]{
+      background-color: #1d96b2 !important;
+}
+.btn btn-primary{
+  margin-left: 106px !important;
+}
+.form-control{
+  margin-left: 10px !important;
+}
+.tab-content{
+  margin-left: 3px;
+    margin-top: -17px;
+    background-color: #e2ecf3;
+    width: 487px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 14px !important;
+}
+li[class*="paginate_button"]{
+  color:#333;
+}
+#exam tr:nth-child(even){
+  background-color: #ffffff;
+}
+.sorting{
+  color:white;
+}
+
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+    $('#exam').DataTable({
+
+       "pageLength": 10
+    });
+    
+} );
+
+
+
+  /*$('#myModal11').on('shown.bs.modal', function () {
+    $(this).find('.modal-dialog').css({width:'auto',
+                               height:'auto', 
+                              'max-height':'100%'});
+});
+*/
+
+function excuteScript(e){
+debugger;
+  
+  var click = $("#check1").val();
+  var dbconf  = $('#database_select').val();
+
+  var options = $('#database_select')[0]['options'];
+  var dbid ;
+  for (var i=1;i<options.length;i++){
+    if(dbconf == options[i]['value'])
+      dbid = options[i]['dataset']['dbname'];
+
+  }
+
+/* var scrip_id = $('#radio_opt').val();*/
+
+/*var length=document.getElementById('exam').rows[0].cells.length*/
+ /* document.getElementById('radio_opt').elements[i];*/
+/* var elements = document.forms[0].elements['radio_opt'];*/
+ var x = document.getElementById("radiotbody").rows;
+
+
+ console.log(x)
+
+var radio = document.getElementsByName('radio_opt');
+var value;
+var script_type ;
+for(var i = 0; i < x.length; i++){
+    if(x[i]['cells'][0]['children'][0].checked){
+        value = x[i]['cells'][0]['children'][0].value;
+        script_type = x[i]['cells'][2]['dataset']['script'];
+    }
+}
+
+   
+
+    if(dbid == script_type){
+
+
+  
+  $.ajax({
+            url:"/query/",
+            type:"POST",
+            data:{"dbconf":dbconf,"value":value},
+            success: function(data){
+                debugger;
+                result = JSON.parse(data);
+                if(result.data_type === 'select'){
+                result =JSON.parse(result.data);
+                console.log(result);
+/*
+   <table id="sample_table1" class="display" cellspacing="0" width="100%">
+        <thead id="headid">
+           
+                
+            
+        </thead>
+        <tbody id="bodyid">
+           
+       </tbody>
+           </table>
+
+*/  
+              var table = document.createElement('table');
+              var thead = document.createElement('thead');
+              var tbody = document.createElement('tbody');
+
+              var tableAttr_id = document.createAttribute('id');
+              tableAttr_id.value = "sample_table1";
+              var tableClass = document.createAttribute('class');
+              tableClass.value = "display";
+              var tableCellspacing = document.createAttribute('cellspacing');
+              tableCellspacing.value = "0";
+              var tablewidth = document.createAttribute('width');
+              tablewidth.value = "100%";
+
+             /* table.attr['id'] = 'sample_table1';
+              table.attr['class'] = 'display';
+              table.attr['cellspacing']= 'cellspacing';
+*/
+             /* table.setAttributeNode(table);
+              table.setAttributeNode(thead);
+              table.setAttributeNode(tbody);*/
+
+              table.setAttributeNode(tableAttr_id);
+              table.setAttributeNode(tableClass);
+              table.setAttributeNode(tableCellspacing);
+              table.setAttributeNode(tablewidth);
+                
+              var tabheader = thead;
+             //tabheader.innerHTML = '';
+              var trHead = document.createElement('tr');
+              for(var i =0 ; i < result.columns.length ; i++)
+                {
+
+                     var th = document.createElement('th');
+                     th.appendChild(document.createTextNode(result.columns[i]));
+                     trHead.appendChild(th);
+
+                }
+
+                
+                tabheader.appendChild(trHead);
+                var tbody = tbody;
+                tbody.innerHTML = '';
+
+                for(var j =0 ; j < result.rows.length ; j++)
+                {
+
+                    var tr = document.createElement('tr');
+                   // tr.setAttribute("id",j)
+                    tbody.appendChild(tr);
+
+                    for(var k = 0; k <  result.rows[j].length ; k++)
+                    {
+
+                        var td1 = document.createElement('td');
+                        td1.appendChild(document.createTextNode(result.rows[j][k]));
+                        tr.appendChild(td1);
+
+                    }
+
+
+              }
+              
+              table.appendChild(tabheader);
+              table.appendChild(tbody);
+
+              
+
+
+              var modalBody = document.getElementById("modal-body-template");
+              modalBody.innerHTML = "";
+              modalBody.appendChild(table);
+
+                $('#myModal11').modal('show');
+
+                $('#sample_table1').DataTable();
+              }
+
+              else{
+                var tbody = document.getElementById("modal-body-template");
+                tbody.innerHTML = result.data_msg;
+                //$(".modal-body").html(result.data_msg);
+
+                $('#myModal11').modal('show');
+
+                //alert(result.data_msg);
+              }
+
+
+  
+
+}
+
+});
+}
+else{
+
+  alert('cannot execute...script type and dbconfig are not same');
+}
+
+}
+
+
+function executeftp(id){
+debugger;
+  var click = $("#check").val();
+  alert("id"+id);
+  var myFormData = new FormData();
+  myFormData.append('FILE', $('#file-'+id)[0].files[0]);
+  console.log($('#file-'+id)[0].files[0])
+  myFormData.append('id', id);
+
+$.ajax({
+  url:"/ftp/",
+  type: 'POST',
+  processData: false, // important
+  contentType: false, // important
+  dataType : 'json',
+  data: myFormData
+});
+
+}
+
+</script>
+<body>
+<div class="container" style="margin-left:50px;margin-top:0px;">
+
+      <!-- <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Connection</a>
+            </li>
+            
+           
+      </ul> -->
+    <div style="margin-left: 420px; color: black; margin-top: 30px;"><u>SCRIPT EXECUTION</u></div>
+
+    <div class="col-md-offset-8" style="margin-left: 58.66667%;">
+      <input type="button" class="btn btn-primary" name="submit" id="check1"  onclick="excuteScript(event)"  value="Execute">
+    </div>
+
+<div  class="col-md-offset-2" style="width: 750px; margin-top: 7px; " id="content1">
+  
+     
+    <div class="form-inline col-md-offset-2">DBconfig:
+     
+      <select class="form-control" id="database_select" style="width:400px; margin-top: 10px;">
+        <option>------------</option>
+        {% for j in db_dbconf %}
+           
+                    <option value="{{j.id}}" data-dbname ="{{j.DBType.id}}">{{j.config_name}}</option>
+         
+                        
+        {% endfor %}
+      </select>
+     
+   </div> 
+
+      <div class="col-md-offset-2 col-md-8 col-sm-8 col-lg-8" >
+          <div class="tab-content" style="margin-left: 3px; margin-top: -17px;"><br/><br>
+              <div role="tabpanel" class="tab-pane fade in active" id="profile"  style="color:black;">
+                  
+                  <table id="exam" class="display" cellspacing="0" width="100%" >
+                     
+                       <thead  style="color:white;"> 
+
+                           <tr>
+                                 <th>select</th>
+                                 <th>ScriptName</th>
+                                 <th>Script Type</th>
+
+                         
+                            </tr>
+                        </thead>
+                        <tbody id="radiotbody">  
+                          {% for i in assign %}          
+                             <tr id="{{ forloop.counter }}">
+
+                                 <td><input type="radio" name="radio" value="{{i.scriptexecute_id}}" id="radio_opt{{ forloop.counter}}"  data-loopcount="{{ forloop.counter }}" /></td>
+                                 <td>{{i.scriptexecute.execution_name}}</td>
+
+                                 
+                                 <td data-script="{{i.scriptexecute.script_dbtype.id}}">{{i.scriptexecute.script_dbtype.name}}</td>
+                                
+                             </tr>
+                          {% endfor %}
+                         
+                     
+                       </tbody>
+                        
+                   </table>
+
+              </div>
+         </div>     
+      </div>
+
+  
+</div>
+  <!--       <div role="tabpanel" class="tab-pane fade" id="buzz">
+          
+            <table id="example" class="display" cellspacing="0" width="100%">
+            <thead style="color:red;">
+                <tr>
+                    <th>configname</th>
+                    <th>Port</th>
+                    <th>Username</th>
+                    <th>TargetDestination</th>
+                    <th></th>
+            </thead>
+            
+            <tbody>
+                {% for i in ftp %}
+                <tr>                 
+                    <td>{{i.config_name}}</td>
+                    <td>{{i.port}}</td>
+                    <td>{{i.username}}</td>
+                    <form method="post" enctype="multipart/form-data" > {% csrf_token %}
+                                      
+                    <td><input type="file" name="file" id = "file-{{i.id}}" ></td>
+                    </form>
+
+                    <td><input type="button" name="button" class="js-upload-photos" id="check" onclick="executeftp('{{i.id}}')" value="connect"></td>
+                </tr>
+                {% endfor %}
+
+         
+            </tbody>
+            </table>
+        </div>
+ -->
+
+<!--    </div> 
+</div> 
+ -->
+
+
+
+<div class="modal fade" id="myModal11" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="width: 500px;" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+       
+        </div>
+       
+        <div class="modal-body" id ="modal-body-template">
+        
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+  
+</body>
+</html>
+{% endblock content %}
+
+

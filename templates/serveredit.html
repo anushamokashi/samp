@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<h3 style="margin-top: 50px; margin-left: 38%;">EDIT SERVERTYPE</h3>
+
+<form method="POST" action="/serveredit/{{servid}}/">
+<div class="container" style="border: 1px solid black; margin-top: 96px; height: 150px;"><br>
+	<label class="control-label col-sm-2 col-sm-offset-2">ServerName:</label>
+
+
+    <div class="col-sm-6">
+        <input type="text" class="form-control" name="ServerName" value="{{server_edit.ServerName}}" />
+    </div><br><br>
+    
+
+	<button type="submit" class="btn btn-primary" style="float: right;">save</button>
+
+	<input action="action" onclick="window.history.go(-1); return false;" type="button" value="cancel" class="btn btn-danger pull-right" style="margin-right: 9px;" />
+
+</div>
+</form>
+
+</body>
+</html>

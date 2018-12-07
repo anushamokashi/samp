@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+</head>
+<body>
+<h4> Add DBConfig</h4><br>
+
+<form class="form-inline" method="POST" action="/dbconfigedit/{{config}}/">
+
+ <div class="form-group col-md-9">
+      <label for="Config name:" style="padding-right: 6px;">Config name:</label>
+      <input type="text" class="form-control" name="config_name" value="{{form.config_name.value}}"><br><br>
+
+      <label style="padding-left: 55px;">Host:</label>
+      <input type="text" class="form-control " name="host" value="{{form.host.value}}"><br><br>
+
+      <label style="padding-left: 55px;">Port:</label>
+      <input type="text" class="form-control" name="port" value="{{form.port.value}}"><br><br>
+
+      <label style="padding-left: 22px;">Username:</label>
+      <input type="text" name="username" class="form-control" value="{{form.username.value}}"><br><br>
+
+      <label style="padding-left: 22px;">Password:</label>
+      <input type="text" name="password" class="form-control" value="{{form.password.value}}"><br><br>
+
+      <label style="padding-left: 1px;">Service name:</label>
+      <input type="text" name="service_name" class="form-control" value="{{form.service_name.value}}"><br><br>
+
+      <label style="padding-left: 64px;">SID:</label>
+      <input type="text" name="SID" class="form-control" value="{{form.SID.value}}"><br><br>
+
+      <label style="padding-left: 29px;">DBName:</label>
+      <input type="text" name="DBName" class="form-control" value="{{form.DBName.value}}"><br><br>
+
+     
+       <label style="padding-left: 35px;">DBType:</label>
+      <select name="DBType" class="form-control " value="{{form.DBType.value}}" id="id_DBType" style="padding-right: 120px;">
+       {% for i in db %}
+
+  		<option value="{{i.id}}" {% if i.id == confedit.DBType_id %} selected {% endif %} >{{i.name}}</option>
+  		{% endfor %}
+	</select><br><br>
+	
+      <!-- <label style="padding-left: 34px;">DBType:</label>
+      <input type="text" name="DBType" class="form-control"><br><br> -->
+<!-- 
+      <label style="padding-left: 18px;">CompanyId:</label>
+       <select name="companyId" class="form-control "  id="id_CompanyId" style="padding-right: 120px;">
+  		{% for i in company_list %}
+       <option value="{{i.id}}">{{i}}</option>
+       {% endfor %}
+	</select> -->
+     
+
+      <button type="submit" class="btn btn-primary " style="margin-left: 410px;">save</button>
+
+      <input action="action" onclick="window.history.go(-1); return false;" type="button" value="cancel" class="btn btn-danger" style="margin-left: 0px;" />
+
+ </div>
+
+ </form>
+</body>
+</html>

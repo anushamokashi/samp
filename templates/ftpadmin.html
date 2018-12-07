@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <script type="text/javascript" src="
+https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" ></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js" ></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+<style type="text/css">
+    .input-sm {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    /*border-radius: 15px;*/
+   
+}
+table {
+    
+        
+   /* background-image: linear-gradient(rgb(51, 204, 255) 28%, rgb(153, 255, 222) 100%);}
+.table-bordered {
+    border: 0px solid #ddd;*/
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+   background: linear-gradient(to bottom right, #57bbd2 99%, #d9edf7 118%);
+    border-radius: 30px;
+    padding-top: 10px;
+    
+}
+table.table-bordered.dataTable tbody td {
+    border-bottom-width: 0;
+   /* border-radius: 12px;*/
+    
+}
+element.style {
+    margin-top: 30px;
+    margin-left: 73%;
+}
+</style>
+
+
+
+</head>
+<body>
+<a href="/ftpadd/">
+<button type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 72%;">ADD FTP</button></a>
+
+<div><h4 style="margin-top: 2px; margin-left: 49%; color: #5b48c3">FTP</h4></div>
+
+<div class="col-md-8 col-lg-8 col-xs-8  col-md-offset-2 col-lg-offset-2 col-xs-offset-2">
+<table id="example" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="color: black;">ConfigName</th>
+                <th style="color: black;">HOST</th>
+                <th style="color: black;">PORT</th>
+                <!-- <th>Username</th>
+                <th>Password</th>
+                <th>CompanyID</th>
+                <th>Targetdestination</th> -->
+                <th style="color: black;">EDIT</th>
+                <th style="color: black;">DELETE</th>
+                               
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in ftp %}
+            <tr>
+            	
+                <td>{{i.config_name}}</td>
+                 <td>{{i.host}}</td>
+                  <td>{{i.port}}</td>
+                 <!--   <td>{{i.username}}</td>
+                    <td>{{i.password}}</td>
+                    <td>{{i.companyId}}</td>
+                    <td>{{i.targetdestination}}</td> -->
+                       
+                         
+               
+              <td><a href="/ftpedit/{{i.id}}/"><button><i class="glyphicon glyphicon-pencil"></button></i></a></td>
+
+
+                <td><a href="/delftp/{{i.id}}/"><button><i class="glyphicon glyphicon-trash"></i></button></a></td>
+                
+                
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+ </table>
+
+</div>
+</body>
+</html>
+
+

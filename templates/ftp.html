@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>execute</title>
+ <link rel="shortcut icon" href="/static/static/assets/images/auvit-272x128.png" type="image/x-icon">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="/static/assets/bootstrap-material-design-font/css/material.css">
+  <link rel="stylesheet" href="/static/assets/et-line-font-plugin/style.css">
+  <link rel="stylesheet" href="/static/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/animate.css/animate.min.css">
+  <link rel="stylesheet" href="/static/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="/static/assets/theme/css/style.css">
+  <link rel="stylesheet" href="/static/assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="/static/assets/custom/custom.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/font-awesome.css" media="all">
+  <link rel="stylesheet" href="/static/assets/line-icons/line-icons.css">
+
+  <link rel="stylesheet" href="/static/assets/custom/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/custom/jquery.dataTables.min.css">
+
+  <!-- /.terminal-window css -->
+  <link rel="stylesheet" href="/static/custom/css/terminal.css">
+  <link rel="stylesheet" href="/static/custom/css/core.css">
+  <link rel="stylesheet" href="/static/custom/css/cursor.css">
+  <!-- /.end terminal window -->
+  
+
+  <!--<link href="/static/jquery.terminal-1.5.0/css/jquery.terminal-1.5.0.min.css" rel="stylesheet"/>-->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+   <script src="/static/assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="/static/assets/tether/tether.min.js"></script>
+   <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="/static/custom/js/jquery.dataTables.min.js"></script>
+  <script src="/static/custom/js/dataTables.bootstrap.min.js"></script>
+
+</head>
+
+
+<style type="text/css">
+  .nav-tabs .nav-link {
+  color : blue;
+  padding : 6px 15px;
+}
+
+
+h6{
+  color: black;
+    font-size: 16px;
+    font-style: oblique;
+    font-family: initial;
+}
+h4{  font-style: italic;
+    font-family: fantasy;
+    FONT-SIZE: 16px;
+    color: deeppink;
+}
+
+/*.sidebar{
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    
+    background-color: #4d4e50;
+    color: white;
+    margin-top:-46px;
+}*/
+
+.box1
+{
+  border: 1px solid black;
+  height: 25px;
+
+}
+
+.box2
+{
+  border: 1px solid black;
+  height: 25px;
+  left:20px;
+}
+
+.box3
+{
+   border: 1px solid black;
+  height: 25px;
+  left:30px;
+}
+.box4
+{
+   border: 1px solid black;
+  height: 25px;
+  left:40px;
+}
+.box5
+{
+  margin-left: 70px;
+  margin-top: -8px;
+}
+.progress { display: none; }
+
+table.dataTable, table.dataTable th, table.dataTable td {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    /* background-color: red; */
+    background: linear-gradient(to bottom right, #57bbd2 99%, #d9edf7 118%);
+   
+}
+
+#example tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+  
+    //$('#sample_table').DataTable();
+
+} );
+
+
+function excuteScript(id){
+
+  
+  var click = $("#check").val();
+  /*alert("id"+id);*/
+
+  $.ajax({
+            url:"/query/",
+            type:"POST",
+            data:{"id":id},
+            success: function(data){
+                
+                result = JSON.parse(data);
+                if(result.data_type === 'select'){
+                result =JSON.parse(result.data);
+                console.log(result);
+
+
+
+                var tabheader = document.getElementById("headid");
+                tabheader.innerHTML = '';
+                  var trHead = document.createElement('tr');
+                  for(var i =0 ; i < result.columns.length ; i++)
+                  {
+
+                     var th = document.createElement('th');
+                     th.appendChild(document.createTextNode(result.columns[i]));
+                     trHead.appendChild(th);
+
+                }
+
+                
+                tabheader.appendChild(trHead);
+                var tbody = document.getElementById("bodyid");
+                tbody.innerHTML = '';
+
+                for(var j =0 ; j < result.rows.length ; j++)
+                {
+
+                    var tr = document.createElement('tr');
+                   // tr.setAttribute("id",j)
+                    tbody.appendChild(tr);
+
+                    for(var k = 0; k <  result.rows[j].length ; k++)
+                    {
+
+                        var td1 = document.createElement('td');
+                        td1.appendChild(document.createTextNode(result.rows[j][k]));
+                        tr.appendChild(td1);
+
+                    }
+
+
+              }
+
+
+                $('#myModal11').modal('show');
+
+                $('#sample_table1').DataTable();
+              }
+
+              else{
+                $(".modal-body").html(result.data_msg);
+
+                $('#myModal11').modal('show');
+
+                //alert(result.data_msg);
+              }
+
+
+  
+
+}
+
+})
+
+}
+
+
+function executeftp(id){
+
+  var click = $("#check").val();
+  alert("id"+id);
+  var myFormData = new FormData();
+  myFormData.append('FILE', $('#file-'+id)[0].files[0]);
+  console.log($('#file-'+id)[0].files[0])
+  myFormData.append('id', id);
+
+$.ajax({
+  url:"/ftp/",
+  type: 'POST',
+  processData: false, // important
+  contentType: false, // important
+  dataType : 'json',
+  data: myFormData
+});
+
+}
+
+</script>
+<body>
+<div class="col-md-7 col-lg-7 col-xs-7 ">
+<div class="container" style="margin-left:10%;margin-top:20px;">
+
+     <!--  <ul class="nav nav-tabs" role="tablist">
+            
+            <li class="nav-item">
+              <a class="nav-link" id="click" href="#buzz" role="tab" data-toggle="tab">FTP</a>
+            </li>
+           
+      </ul>  -->
+
+
+      <p style="font-size: 30px; margin-left: 70%; color: blue;" >FTP</p>
+    
+   
+        
+          
+            <table id="example" class="display" cellspacing="0" width="100%">
+            <thead style="color:black;">
+                <tr>
+                    <th>configname</th>
+                    <th>Port</th>
+                    <th>Username</th>
+                    <th>TargetDestination</th>
+                    <th></th>
+            </thead>
+            
+            <tbody>
+                {% for i in ftpobj %}
+                <tr>                 
+                    <td>{{i.config_name}}</td>
+                    <td>{{i.port}}</td>
+                    <td>{{i.username}}</td>
+                    <form method="post" enctype="multipart/form-data" > {% csrf_token %}
+                                      
+                    <td><input type="file" name="file" id = "file-{{i.id}}" ></td>
+                    </form>
+
+                    <td><input type="button" name="button" class="btn btn-primary" id="check" onclick="executeftp('{{i.id}}')" value="connect" style="color:black; background-color:#ddd; "></td>
+                </tr>
+                {% endfor %}
+
+         
+            </tbody>
+      
+            
+           
+            </table>
+      
+
+
+  
+</div> 
+
+</div>
+
+
+
+  
+</body>
+</html>
+
+
+
+

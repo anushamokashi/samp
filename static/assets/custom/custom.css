@@ -1,0 +1,61 @@
+.modal-backdrop{
+    z-index:0 !important;
+}
+
+.modal-dialog {
+    width: 350px;
+}
+.modal-footer {
+    height: 70px;
+    margin: 0;
+}
+.modal-footer .btn {
+    font-weight: bold;
+}
+.modal-footer .progress {
+    display: none;
+    height: 32px;
+    margin: 0;
+}
+.input-group-addon {
+    color: #fff;
+    background: #3276B1;
+}
+
+.paddingBetweenCols td
+{
+    padding:10px 15px 0 15px;
+}
+.login-panel {
+
+    border-style:ridge;
+    border-width:1px;
+    border-color: lightgrey;
+
+}
+
+.panel-heading{
+
+    background: lightgrey;
+    height: 40px;
+}
+
+.panel-title {
+
+    padding: 5px;
+    font-family: 'Lora', serif;
+
+}
+
+.required {
+
+    color: red;
+    font-size: 20px
+
+}
+
+html {
+
+    font-size:100% !important;
+
+}

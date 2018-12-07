@@ -1,0 +1,15 @@
+
+
+#terminal {
+    width:960px;
+    margin : 0 auto;
+}
+
+.fromTo{
+    color: #ff0000;
+    margin-right:10px;
+}
+
+.blink {
+    visibility: visible;
+}

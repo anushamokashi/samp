@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v3.12.1, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/static/assets/images/auvit-272x128.png" type="image/x-icon">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="/static/assets/bootstrap-material-design-font/css/material.css">
+  <link rel="stylesheet" href="/static/assets/et-line-font-plugin/style.css">
+  <link rel="stylesheet" href="/static/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/animate.css/animate.min.css">
+  <link rel="stylesheet" href="/static/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="/static/assets/theme/css/style.css">
+  <link rel="stylesheet" href="/static/assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="/static/assets/custom/custom.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/font-awesome.css" media="all">
+  <link rel="stylesheet" href="/static/assets/line-icons/line-icons.css">
+  <link rel="stylesheet" href="/static/assets/custom/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/custom/jquery.dataTables.min.css">
+
+  <!-- /.terminal-window css -->
+  <link rel="stylesheet" href="/static/custom/css/terminal.css">
+  <link rel="stylesheet" href="/static/custom/css/core.css">
+  <link rel="stylesheet" href="/static/custom/css/cursor.css">
+  <!-- /.end terminal window -->
+  /home/bcs/ToolSecurity/toolsecurity/static/custom/js
+
+  <!--<link href="/static/jquery.terminal-1.5.0/css/jquery.terminal-1.5.0.min.css" rel="stylesheet"/>-->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+   <script src="/static/assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="/static/assets/tether/tether.min.js"></script>
+   <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="/static/custom/js/jquery.dataTables.min.js"></script>
+  <script src="/static/custom/js/dataTables.bootstrap.min.js"></script>
+  <style>
+  .modal-lg {
+    width: 90%;
+   max-width:1200px;
+  }
+.head-class{
+  color: green;
+  text-align: -webkit-center;
+  text-decoration: blink;
+  text-shadow: burlywood;
+}
+
+  </style>
+
+
+</head>
+<body>
+<section id="ext_menu-3">
+
+    <nav class="navbar navbar-dropdown navbar-fixed-top">
+        <div class="container">
+
+            <div class="mbr-table">
+                <div class="mbr-table-cell">
+
+                    <div class="navbar-brand">
+                        <a href="{% url 'index' %}" class="navbar-logo"><img src="/static/assets/images/auvit-272x128.png" alt="Mobirise"></a>
+
+                    </div>
+
+                </div>
+                <div class="mbr-table-cell">
+
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="hamburger-icon"></div>
+                    </button>
+
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                    <li class="nav-item"><a class="nav-link link" href="#" id="over">OVERVIEW</a></li>
+                    <li class="nav-item"><a class="nav-link link" href="#">FEATURES</a></li>
+                    <li class="nav-item"><a class="nav-link link" href="#">HELP</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item nav-btn collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link link dropdown-toggle" href="javascript:void(0);" data-toggle="dropdown-submenu" aria-expanded="false">{{ request.user.username| upper }}</a>
+                                    <div class="dropdown-menu">
+                                        {% if not request.user.is_staff %}
+                                            <a class="dropdown-item" href="{% url 'index' %}">Home<br></a>
+                                            <a class="dropdown-item" href="/profile/edit/">Edit Profile<br></a>
+                                            <a class="dropdown-item" href="/change_password/">Change Password<br></a>
+                                            <a class="dropdown-item" href="/logout">Logout<br></a>
+                                        {% elif request.user.is_staff %}
+                                            <a class="dropdown-item" href="/">Home<br></a>
+                                            <a class="dropdown-item" href="/logout">Logout<br></a>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                            </li>
+                        {% else %}
+                          
+                            <li class="nav-item nav-btn"><a class="nav-link btn btn-warning" href="/login">LOGIN</a></li>
+                        {% endif %}
+                    </ul>
+                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="close-icon"></div>
+                    </button>
+
+                    <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;z-index:0">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel">Log in</h4>
+                                </div> <!-- /.modal-header -->
+
+                                <div class="modal-body">
+
+                                </div> <!-- /.modal-body -->
+
+                                <div class="modal-footer">
+                                    <button class="form-control btn btn-primary" style="display: inline-block;">Login</button>
+
+                                    <div class="progress" style="display: none;">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
+                                            <span class="sr-only">progress</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- /.modal-footer -->
+
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+</section>
+
+{% block content %}
+
+<section class="engine"><a rel="external" href="#">Mobirise Website Maker</a></section><section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow" id="header1-1" style="background-image: url(/static/assets/images/mbr-2000x1333.jpg);">
+
+
+
+    <div class="mbr-table-cell">
+
+        <div class="container">
+            <div class="row">
+                <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
+
+                    <h1 class="mbr-section-title display-1">WEB TOOL SECURITY</h1>
+                    <p class="mbr-section-lead lead">Click any text to edit or style it. Click blue "Gear" icon in the top right corner to hide/show buttons, text, title and change the block background. <br> Click red "+" in the bottom right corner to add a new block. Use the top left menu to create new pages, sites and add extensions.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mbr-arrow mbr-arrow-floating" aria-hidden="true"><a href="#footer1-2"><i class="mbr-arrow-icon"></i></a></div>
+
+</section>
+
+<section class="mbr-cards mbr-section mbr-section-nopadding" id="features6-1" style="background-color: rgb(239, 239, 239);">
+
+
+
+    <div class="mbr-cards-row row">
+        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
+            <div class="container">
+              <div class="card cart-block">
+                  <div class="card-img"><a href="#" class="etl-icon icon-desktop mbr-iconfont mbr-iconfont-features3"></a></div>
+                  <div class="card-block">
+                    <h4 class="card-title">Bootstrap 4</h4>
+
+                    <p class="card-text">Bootstrap 4 has been noted as one of the most reliable and proven frameworks and Mobirise has been equipped to develop websites using this framework.</p>
+                    <div class="card-btn"><a href="#" class="btn btn-primary">MORE</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
+            <div class="container">
+                <div class="card cart-block">
+                    <div class="card-img"><a href="#" class="etl-icon icon-mobile mbr-iconfont mbr-iconfont-features3"></a></div>
+                    <div class="card-block">
+                        <h4 class="card-title">Responsive</h4>
+
+                        <p class="card-text">One of Bootstrap 4's big points is responsiveness and Mobirise makes effective use of this by generating highly responsive website for you.</p>
+                        <div class="card-btn"><a href="#" class="btn btn-primary">MORE</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
+            <div class="container">
+                <div class="card cart-block">
+                    <div class="card-img"><a href="#" class="etl-icon icon-pencil mbr-iconfont mbr-iconfont-features3"></a></div>
+                    <div class="card-block">
+                        <h4 class="card-title">Web Fonts</h4>
+
+                        <p class="card-text">Google has a highly exhaustive list of fonts compiled into its web font platform and Mobirise makes it easy for you to use them on your website easily and freely.</p>
+                        <div class="card-btn"><a href="#" class="btn btn-primary">MORE</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
+            <div class="container">
+                <div class="card cart-block">
+                    <div class="card-img"><a href="#" class="etl-icon icon-global mbr-iconfont mbr-iconfont-features3"></a></div>
+                    <div class="card-block">
+                        <h4 class="card-title">Unlimited Sites</h4>
+
+                        <p class="card-text">Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.</p>
+                        <div class="card-btn"><a href="#" class="btn btn-primary">MORE</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<div id="demo"></div>
+
+
+<section class="mbr-section mbr-section-md-padding mbr-footer footer1" id="contacts1-2" style="background-color: #f3c649; padding-top: 90px; padding-bottom: 90px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <div><img src="/static/assets/images/auvit-128x60.png"></div>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Address</strong><br>
+1234 Street Name<br>
+City, AA 99999</p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Contacts</strong><br>
+Email: support@mobirise.com<br>
+Phone: +1 (0) 000 0000 001<br>
+Fax: +1 (0) 000 0000 002</p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Links</strong><br>
+<a class="text-white" href="#">Website builder</a><br>
+<a class="text-white" href="#">Download for Windows</a><br>
+<a class="text-white" href="#">Download for Mac</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-2" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+
+    <div class="container">
+        <p class="text-xs-center">Copyright (c) 2017 Bluechip.</p>
+    </div>
+   
+</footer>
+{% endblock content %}
+
+{% block javascript %}
+  
+  <script src="/static/assets/jarallax/jarallax.js"></script>
+  <script src="/static/assets/viewport-checker/jquery.viewportchecker.js"></script>
+  <script src="/static/assets/dropdown/js/script.min.js"></script>
+  <script src="/static/assets/touch-swipe/jquery.touch-swipe.min.js"></script>
+  <script src="/static/assets/theme/js/script.js"></script>
+
+  <!-- terminal-window js -->
+   
+
+
+
+  <script type="text/javascript">
+	$(document).ready(function(){
+		
+    $('.modal-footer button').click(function(){
+		var button = $(this);
+
+		if ( button.attr("data-dismiss") != "modal" ){
+			var inputs = $('form input');
+			var title = $('.modal-title');
+			var progress = $('.progress');
+			var progressBar = $('.progress-bar');
+
+			inputs.attr("disabled", "disabled");
+
+			button.hide();
+
+			progress.show();
+
+			progressBar.animate({width : "100%"}, 100);
+
+			progress.delay(1000)
+					.fadeOut(600);
+
+			button.text("Close")
+					.removeClass("btn-primary")
+					.addClass("btn-success")
+    				.blur()
+					.delay(1600)
+					.fadeIn(function(){
+						title.text("Log in is successful");
+						button.attr("data-dismiss", "modal");
+					});
+		}
+	});
+
+	$('#myModal').on('hidden.bs.modal', function (e) {
+		var inputs = $('form input');
+		var title = $('.modal-title');
+		var progressBar = $('.progress-bar');
+		var button = $('.modal-footer button');
+
+		inputs.removeAttr("disabled");
+
+		title.text("Log in");
+
+		progressBar.css({ "width" : "0%" });
+
+		button.removeClass("btn-success")
+				.addClass("btn-primary")
+				.text("Ok")
+				.removeAttr("data-dismiss");
+
+	});
+
+	/*var myTeminal = new Shell(document.getElementById('demo'), {
+      // options here
+      // The user of the shell
+        user: "auvitapp",
+
+        // The host of the shell
+        host: "119.81.83.210",
+
+        // The current path
+        path: "/home/auvitapp",
+
+        // The style (custom, ubuntu, osx, windows)
+        style: "custom",
+
+        // The theme (dark, light)
+        theme: "dark",
+
+        // If is responsive
+        responsive: false,
+
+        // Display the shadow
+        shadow: true,
+
+        // The commands list
+        commands: []
+    });*/
+
+});
+
+
+
+
+	</script>
+
+{% endblock javascript %}
+  <input name="animation" type="hidden">
+  </body>
+</html>

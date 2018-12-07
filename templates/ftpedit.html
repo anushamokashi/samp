@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .form-group {
+    margin-left: 28%;
+     background: linear-gradient(to bottom, #33ccff 28%, #99ffde 100%);
+    margin-top: -19px;
+    padding-top: 13px;
+    border-radius: 17px;
+    box-shadow: -4px 6px 4px #ccc;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-right: 43%;
+    margin-left: 10%;
+}
+
+input[name="host"]{
+  margin-left: 4px;
+}
+input[name="port"]{
+  margin-left: 7px;
+}
+input[name="targetdestination"]{
+  margin-left: -2px;
+}
+
+  </style>
+
+</head>
+<body>
+<div><h4 style="color:#5b48c3; margin-left:351px; text-decoration: underline;" > EDIT FTP</h4></div><br>
+
+<form class="form-inline" method="POST" action="/ftpedit/{{edit}}/">
+
+ <div class="form-group col-md-9">
+      <label for="Config name:" style="padding-right: 6px;">Config name:</label>
+      <input type="text" class="form-control" name="config_name" value="{{form.config_name.value}}" />
+      <br><br>
+
+      <label style="padding-left: 55px;">Host:</label>
+      <input type="text" class="form-control " name="host" value="{{form.host.value}}"><br><br>
+
+      <label style="padding-left: 55px;">Port:</label>
+      <input type="text" class="form-control" name="port" value="{{form.port.value}}"><br><br>
+
+      <label style="padding-left: 22px;">Username:</label>
+      <input type="text" name="username" class="form-control" value="{{form.username.value}}"><br><br>
+
+      <label style="padding-left: 22px;">Password:</label>
+      <input type="text" name="password" class="form-control" value="{{form.password.value}}"><br><br>
+
+    <!-- 
+      <label style="padding-left: 18px;">CompanyId:</label>
+       <select name="companyId" class="form-control "  id="id_CompanyId" style="padding-right: 153px;">
+  		{% for i in company_list %}
+       <option value="{{i.id}}">{{i}}</option>
+       {% endfor %}
+	</select> -->
+     
+     <label style="padding-left: 20px;">Targetdest:</label>
+      <input type="text" name="targetdestination" class="form-control" value="{{form.targetdestination.value}}"><br><br> 
+
+      <button type="submit" class="btn btn-primary pull-right">save</button>
+
+
+      <input action="action" onclick="window.history.go(-1); return false;" type="button" value="cancel" class="btn btn-danger pull-right" style="margin-right:43px;margin-top:-33px" /><br/><br/>
+ </div>
+
+ </form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <script type="text/javascript" src="
+https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" ></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js" ></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+
+
+</head>
+<body>
+<a href="/serveradd/">
+<button type="button" class="btn btn-primary" style="margin-top: 20px; margin-left: 84%;"> SERVERTYPE</button></a>
+
+<h4 style="margin-top: 3px; margin-left: 37%;">SERVERTYPE</h4>
+<div class="col-md-7 col-lg-7 col-xs-7 col-md-offset-2 col-lg-offset-2 col-xs-offset-2" style="margin-top: 17px;">
+<table id="example" class="table table-striped table-bordered ">
+        <thead>
+            <tr>
+                <th>SERVERTYPE</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
+                               
+            </tr>
+        </thead>
+        <tbody>
+            {% for servertype in server%}
+            <tr>
+            	
+                <td>{{servertype}}</td>
+               
+                <td><a href="/serveredit/{{servertype.id}}/"><button><i class="glyphicon glyphicon-pencil"></button></i></a></td>
+
+
+                <td><a href="/servdel/{{servertype.id}}/"><button><i class="glyphicon glyphicon-trash"></i></button></a></td>
+                
+                
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+ </table>
+</div>
+
+</body>
+</html>
+
+

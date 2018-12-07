@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <script type="text/javascript" src="
+https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" ></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js" ></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+
+
+</head>
+<body>
+<a href="/configadd/">
+<button type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 83%;">ADD DBCONFIG</button></a>
+
+
+<h4 style="margin-top: 0px; margin-left: 45%;">DBCONFIG</h4>
+<div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-2 col-lg-offset-2 col-xs-offset-2">
+<table id="example" class="table table-striped table-bordered" >
+        <thead>
+            <tr>
+                <th>DBCONFIG</th>
+                <th>HOST</th>
+                <th>PORT</th>
+               <!--  <th>Username</th>
+                <th>Password</th>
+                <th>Service name:</th>
+                <th>SID</th>
+                <th>DBName</th>
+                <th>DBType</th>
+                <th>CompanyID</th> -->
+                <th>EDIT</th>
+                <th>DELETE</th>
+                               
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in dbconfigdetails %}
+            <tr>
+            	
+                <td>{{i.config_name}}</td>
+                 <td>{{i.host}}</td>
+                  <td>{{i.port}}</td>
+                  <!--  <td>{{i.username}}</td>
+                    <td>{{i.password}}</td>
+                     <td>{{i.service_name}}</td>
+                      <td>{{i.SID}}</td>
+                       <td>{{i.DBName}}</td>
+                       <td>{{i.DBType}}</td>
+                        <td>{{i.companyId}}</td> -->
+                       
+                         
+               
+                <td><a href="/dbconfigedit/{{i.id}}/"><button><i class="glyphicon glyphicon-pencil"></button></i></a></td>
+
+
+                <td><a href="/deldbconf/{{i.id}}/"><button><i class="glyphicon glyphicon-trash"></i></button></a></td>
+                
+                
+            </tr>
+         {% endfor %}
+           
+        </tbody>
+ </table>
+</div>
+
+</body>
+</html>
+
+
